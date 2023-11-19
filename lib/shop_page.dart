@@ -10,7 +10,10 @@ class ShopPage extends StatelessWidget {
         backgroundColor: Colors.transparent,
         elevation: 0,
       foregroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text("Shop Page"),)
+        title: Text("Shop Page"),
+        ),
+      drawer: Drawer( ),
+
     );
   }
 }
