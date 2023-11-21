@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:minimal_ecommerce_app/components/my_button.dart';
 import 'package:minimal_ecommerce_app/products.dart';
 import 'package:minimal_ecommerce_app/shop.dart';
 import 'package:provider/provider.dart';
@@ -9,27 +10,35 @@ class CartPage extends StatelessWidget {
   void removeItemFromCart(BuildContext context, Product product) {
     //show a dialog box to ask user to confirmto remove from cart
     showDialog(
-        context: context,
-        builder: (context) => AlertDialog(
-              content: Text("remove this item from your cart"),
-              actions: [
-                // cancle button
-                MaterialButton(
-                  onPressed: () => Navigator.pop(context),
-                  child: Text("Cancle"),
-                ),
+      context: context,
+      builder: (context) => AlertDialog(
+        content: Text("remove this item from your cart"),
+        actions: [
+          // cancle button
+          MaterialButton(
+            onPressed: () => Navigator.pop(context),
+            child: Text("Cancle"),
+          ),
 // yes button
-                MaterialButton(
-                  onPressed: () {
-                    Navigator.pop(context);
+          MaterialButton(
+            onPressed: () {
+              Navigator.pop(context);
 
-                    //add to cart
-                    context.read<Shop>().addToCart(product);
-                  },
-                  child: Text("yes"),
-                )
-              ],
-            ));
+              //add to cart
+              context.read<Shop>().addToCart(product);
+            },
+            child: Text("yes"),
+          )
+        ],
+      ),
+    );
+  }
+  // User pressed pay button
+  void payButtonPressed (BuildContext context){
+    showDialog(context: context, builder: (context)=>AlertDialog(
+        content: Text("User Want to Pay ")
+    ));
+
   }
 
   @override
@@ -47,7 +56,7 @@ class CartPage extends StatelessWidget {
       body: Column(
         children: [
           Expanded(
-            child: ListView.builder(
+            child:cart.isEmpty?  Text("Cart is empty") : ListView.builder(
               itemCount: cart.length,
               itemBuilder: (context, index) {
                 //get individual item in the cart
@@ -65,6 +74,8 @@ class CartPage extends StatelessWidget {
               },
             ),
           ),
+          //pay button
+          MyButton(onTap:()=> payButtonPressed(context), child: Text("Pay Now"))
         ],
       ),
     );

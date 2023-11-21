@@ -21,15 +21,29 @@ class ShopPage extends StatelessWidget {
         ),
       drawer: MyDrawer(),
         backgroundColor: Theme.of(context).colorScheme.background,
-        body: ListView.builder(
-          itemCount: products.length,
-          itemBuilder: (context, index){
-          //get each individual product from shop
-          final Product = products[index];
-          return MyProductTite(product: Product);
+        body: ListView(
+          children: [
 
-          //return as a product tile UI
-        }),
+            //shop title 
+
+            // shop sub title
+
+            //product list
+            SizedBox(height: 550,
+          child: ListView.builder(
+            itemCount: products.length,
+            scrollDirection: Axis.horizontal,
+            padding: EdgeInsets.all(25),
+            itemBuilder: (context, index){
+            //get each individual product from shop
+            final Product = products[index];
+            return MyProductTite(product: Product);
+        
+            //return as a product tile UI
+          }),
+        ),
+          ],
+        )
 
     );
   }
