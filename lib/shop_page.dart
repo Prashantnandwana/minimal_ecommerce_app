@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:minimal_ecommerce_app/my_drawer.dart';
+import 'package:minimal_ecommerce_app/my_product_tile.dart';
+import 'package:minimal_ecommerce_app/products.dart';
+import 'package:minimal_ecommerce_app/shop.dart';
+import 'package:provider/provider.dart';
 
 class ShopPage extends StatelessWidget {
-  const ShopPage({super.key});
+    const ShopPage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    //access produsts in shop
+    final products =context.watch<Shop>().shop;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
@@ -15,6 +21,15 @@ class ShopPage extends StatelessWidget {
         ),
       drawer: MyDrawer(),
         backgroundColor: Theme.of(context).colorScheme.background,
+        body: ListView.builder(
+          itemCount: products.length,
+          itemBuilder: (context, index){
+          //get each individual product from shop
+          final Product = products[index];
+          return MyProductTite(product: Product);
+
+          //return as a product tile UI
+        }),
 
     );
   }
