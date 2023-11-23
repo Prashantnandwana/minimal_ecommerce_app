@@ -34,41 +34,53 @@ child: Text("yes"),
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.primary,
-      ),
-      margin: EdgeInsets.all(10),
-      padding: EdgeInsets.all(25),
-      child: Column(
-        children: [
-
-          // image 
-          Icon(Icons.favorite),
-
-          //name 
-          Text(product.name),
-          
-          //discription 
-          Text(product.description),
-
-
-          //price + add button
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              // product price
-              Text("\$"+product.price.toStringAsFixed(2)),
-              //add to cart button
-              Container(
-                decoration: BoxDecoration(
-                  color: Theme.of(context).colorScheme.secondary,
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                child: IconButton(onPressed: ()=>addToCart(context), icon: Icon(Icons.add)))
-            ],
-          ),
-        ],
+    return AspectRatio(aspectRatio: 1,
+      child: Container(
+        decoration: BoxDecoration(
+          color: Theme.of(context).colorScheme.primary,
+          borderRadius: BorderRadius.circular(12)
+        ),
+        margin: EdgeInsets.all(10),
+        padding: EdgeInsets.all(25),
+        width: 300,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+    
+            // image 
+            Container(
+              decoration: BoxDecoration(
+                color: Theme.of(context).colorScheme.secondary,
+                borderRadius: BorderRadius.circular(12)
+              ),
+              width: double.infinity,
+              padding: EdgeInsets.all(25),
+              child: Icon(Icons.favorite)),
+    
+            //name 
+            Text(product.name),
+            
+            //discription 
+            Text(product.description),
+    
+    
+            //price + add button
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                // product price
+                Text("\$"+product.price.toStringAsFixed(2)),
+                //add to cart button
+                Container(
+                  decoration: BoxDecoration(
+                    color: Theme.of(context).colorScheme.secondary,
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: IconButton(onPressed: ()=>addToCart(context), icon: Icon(Icons.add)))
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }

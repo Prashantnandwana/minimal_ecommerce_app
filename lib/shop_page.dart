@@ -23,8 +23,10 @@ class ShopPage extends StatelessWidget {
         backgroundColor: Theme.of(context).colorScheme.background,
         body: ListView(
           children: [
-
+SizedBox(height: 25,),
             //shop title 
+            Text("Shop"),
+
 
             // shop sub title
 
